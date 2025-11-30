@@ -1,0 +1,26 @@
+name: Print Software Versions
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  data_processing_level:
+    name: Data Processing Software Versions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Node.js version
+        run: node --version
+
+      - name: Print Python version
+        run: python3 --version
+
+  data_access_level:
+    name: DBMS Software Versions
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install PostgreSQL client
+        run: sudo apt-get update && sudo apt-get install -y postgresql-client
+
+      - name: Print PostgreSQL version
+        run: psql --version
