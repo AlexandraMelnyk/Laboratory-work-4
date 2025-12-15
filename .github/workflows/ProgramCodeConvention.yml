@@ -21,10 +21,10 @@ jobs:
       - name: Install ESLint
         run: npm install eslint --save-dev
 
-      - name: Create ESLint flat config
+      - name: Create ESLint flat config (CommonJS)
         run: |
-          cat << 'EOF' > eslint.config.js
-          export default [
+          cat << 'EOF' > eslint.config.cjs
+          module.exports = [
             {
               files: ["**/*.js"],
               languageOptions: {
