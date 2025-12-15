@@ -1,0 +1,17 @@
+name: DataSchema SQL Convention Check
+
+on:
+  workflow_dispatch:
+
+jobs:
+  lint-sql:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Install SQLFluff
+        run: pip install sqlfluff
+
+      - name: Run SQLFluff Lint
+        run: sqlfluff lint DataSchema.sql --dialect postgres
