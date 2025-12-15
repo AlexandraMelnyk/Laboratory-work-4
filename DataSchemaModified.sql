@@ -57,19 +57,19 @@ ADD CONSTRAINT payment_reg_fk
 FOREIGN KEY (user_email, event_title)
 REFERENCES registrations (user_email, event_title);
 
-CREATE TABLE restaurant (
+CREATE TABLE restaurants (
     restaurant_name VARCHAR(50),
     rating NUMERIC(2, 1),
     distance NUMERIC(5, 1),
     event_title VARCHAR(50)
 );
 
-ALTER TABLE restaurant
+ALTER TABLE restaurants
 ADD CONSTRAINT restaurant_event_fk
 FOREIGN KEY (event_title)
 REFERENCES sports_events (event_title);
 
-ALTER TABLE restaurant
+ALTER TABLE restaurants
 ADD CONSTRAINT rating_range
 CHECK (
     rating BETWEEN 0 AND 5
@@ -85,4 +85,5 @@ ALTER TABLE notifications
 ADD CONSTRAINT notif_user_fk
 FOREIGN KEY (user_email)
 REFERENCES users (email);
+
 
