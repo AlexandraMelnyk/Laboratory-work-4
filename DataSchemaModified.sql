@@ -2,24 +2,24 @@ CREATE TABLE users (
     email VARCHAR(50),
     first_name VARCHAR(30),
     last_name VARCHAR(30),
-    password VARCHAR(100),
+    "password" VARCHAR(100),
     CONSTRAINT users_pk PRIMARY KEY (email)
 );
 
 ALTER TABLE users
-    ADD CONSTRAINT users_email_unique UNIQUE (email);
+ADD CONSTRAINT users_email_unique UNIQUE (email);
 
 ALTER TABLE users
-    ADD CONSTRAINT user_email_template
-    CHECK (
-        email ~ '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
-    );
+ADD CONSTRAINT user_email_template
+CHECK (
+    email ~ '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
+);
 
 ALTER TABLE users
-    ADD CONSTRAINT username_format
-    CHECK (
-        first_name ~ '^[A-Za-z]+$'
-    );
+ADD CONSTRAINT username_format
+CHECK (
+    first_name ~ '^[A-Za-z]+$'
+);
 
 CREATE TABLE sports_event (
     event_title VARCHAR(50),
@@ -36,14 +36,14 @@ CREATE TABLE event_registration (
 );
 
 ALTER TABLE event_registration
-    ADD CONSTRAINT reg_user_fk
-    FOREIGN KEY (user_email)
-    REFERENCES users (email);
+ADD CONSTRAINT reg_user_fk
+FOREIGN KEY (user_email)
+REFERENCES users (email);
 
 ALTER TABLE event_registration
-    ADD CONSTRAINT reg_event_fk
-    FOREIGN KEY (event_title)
-    REFERENCES sports_event (event_title);
+ADD CONSTRAINT reg_event_fk
+FOREIGN KEY (event_title)
+REFERENCES sports_event (event_title);
 
 CREATE TABLE payment (
     payment_date DATE,
@@ -53,35 +53,35 @@ CREATE TABLE payment (
 );
 
 ALTER TABLE payment
-    ADD CONSTRAINT payment_reg_fk
-    FOREIGN KEY (user_email, event_title)
-    REFERENCES event_registration (user_email, event_title);
+ADD CONSTRAINT payment_reg_fk
+FOREIGN KEY (user_email, event_title)
+REFERENCES event_registration (user_email, event_title);
 
 CREATE TABLE restaurant (
-    name VARCHAR(50),
+    "name" VARCHAR(50),
     rating NUMERIC(2, 1),
     distance NUMERIC(5, 1),
     event_title VARCHAR(50)
 );
 
 ALTER TABLE restaurant
-    ADD CONSTRAINT restaurant_event_fk
-    FOREIGN KEY (event_title)
-    REFERENCES sports_event (event_title);
+ADD CONSTRAINT restaurant_event_fk
+FOREIGN KEY (event_title)
+REFERENCES sports_event (event_title);
 
 ALTER TABLE restaurant
-    ADD CONSTRAINT rating_range
-    CHECK (
-        rating BETWEEN 0 AND 5
-    );
+ADD CONSTRAINT rating_range
+CHECK (
+    rating BETWEEN 0 AND 5
+);
 
-CREATE TABLE notification (
+CREATE TABLE "notification" (
     message VARCHAR(255),
     send_date DATE,
     user_email VARCHAR(50)
 );
 
-ALTER TABLE notification
-    ADD CONSTRAINT notif_user_fk
-    FOREIGN KEY (user_email)
-    REFERENCES users (email);
+ALTER TABLE "notification"
+ADD CONSTRAINT notif_user_fk
+FOREIGN KEY (user_email)
+REFERENCES users (email);
