@@ -1,6 +1,8 @@
-function main(){
-console.log("Sports Event Companion")
+'use strict';
+
+function main() {
+    console.log('Sports Event Companion');
 }
 
-main()
+main();
 
