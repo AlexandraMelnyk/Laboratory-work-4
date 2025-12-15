@@ -1,0 +1,41 @@
+name: Program Code Convention Check (Node.js)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  lint-js:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install ESLint
+        run: |
+          npm init -y
+          npm install eslint --save-dev
+
+      - name: Create ESLint config
+        run: |
+          cat << EOF > .eslintrc.json
+          {
+            "env": {
+              "node": true,
+              "es2021": true
+            },
+            "extends": "eslint:recommended",
+            "rules": {
+              "indent": ["error", 4],
+              "quotes": ["error", "single"],
+              "semi": ["error", "always"]
+            }
+          }
+          EOF
+
+      - name: Run ESLint
+        run: npx eslint ProgramCode.js
