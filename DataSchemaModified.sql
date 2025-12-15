@@ -45,14 +45,14 @@ ADD CONSTRAINT reg_event_fk
 FOREIGN KEY (event_title)
 REFERENCES sports_events (event_title);
 
-CREATE TABLE payment (
+CREATE TABLE payments (
     payment_date DATE,
     amount NUMERIC(10, 2),
     user_email VARCHAR(50),
     event_title VARCHAR(50)
 );
 
-ALTER TABLE payment
+ALTER TABLE payments
 ADD CONSTRAINT payment_reg_fk
 FOREIGN KEY (user_email, event_title)
 REFERENCES registrations (user_email, event_title);
@@ -85,3 +85,4 @@ ALTER TABLE notifications
 ADD CONSTRAINT notif_user_fk
 FOREIGN KEY (user_email)
 REFERENCES users (email);
+
