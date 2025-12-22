@@ -12,9 +12,6 @@ jobs:
       - name: Print Node.js version
         run: node --version
 
-      - name: Print Python version
-        run: python3 --version
-
   data_access_level:
     name: DBMS Software Versions
     runs-on: ubuntu-latest
